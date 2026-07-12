@@ -1,332 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-
-        body {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100dvh;
-            height: 100%;
-            margin: 0;
-            padding: 0 10px;
-            color: white;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100dvh;
-            height: 100%;
-            background: url('https://images.hdqwalls.com/download/shorekeeper-wuthering-waves-wf-2560x1440.jpg') no-repeat center center/cover;
-            z-index: -1;
-        }
-
-        .wrapper {
-            width: 100%;
-            max-width: 490px;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid #ffffff80;
-            backdrop-filter: blur(8px);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #f3f2f2;
-        }
-
-        .input-field {
-            position: relative;
-            border-bottom: 2px solid #ccc;
-            margin: 15px 0;
-        }
-
-        .input-field label {
-            position: absolute;
-            color: #fff;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            font-size: 16px;
-            pointer-events: none;
-            transition: 0.15s ease;
-        }
-
-        .input-field input {
-            width: 100%;
-            height: 40px;
-            color: #ffffff;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .input-field input:focus~label,
-        .input-field input:valid~label {
-            font-size: 0.8rem;
-            top: 10px;
-            transform: translateY(-120%);
-        }
-
-        .forget {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 25px 0 35px 0;
-            color: #e6e6e6;
-        }
-
-        #remember {
-            accent-color: #0a5edd;
-        }
-
-        .forget label {
-            display: flex;
-            align-items: center;
-        }
-
-        .forget label p {
-            margin-left: 8px;
-        }
-
-        .wrapper a {
-            color: #efefef;
-            text-decoration: underline;
-        }
-
-        button {
-            background: #ffffff;
-            color: #000;
-            font-weight: 600;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 3px;
-            font-size: 16px;
-            border: 2px solid transparent;
-            transition: 0.3s ease;
-        }
-
-        .register {
-            text-align: center;
-            margin-top: 30px;
-            color: #fff;
-        }
-
-        /* "para el tamaño de pantallas" */
-        @media screen and (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
-            }
-
-            .input-field input {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 14px;
-                padding: 10px 18px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .wrapper {
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .input-field input {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 14px;
-                padding: 10px 18px;
-            }
-        }
-
-        @media screen and (min-width: 1024px) {
-            .wrapper {
-                width: 70%;
-            }
-
-            h2 {
-                font-size: 2.5rem;
-            }
-
-            .input-field input {
-                font-size: 16px;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* "Olvidaste tu contraseña" */
-
-        /* Solo aplica estilo cuando se ve la sección de "Olvidaste tu contraseña" */
-        #reset-section {
-            display: none;
-        }
-
-        #reset-section.show {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-top: 20px;
-            color: #fff;
-        }
-
-
-        #reset-section p {
-            margin: 0;
-            font-size: 16px;
-            color: #f3f3f3;
-            text-align: center;
-        }
-
-        #reset-section .register {
-            margin-top: 5px;
-            /* Reduce el espacio entre "Continuar" y "Volver al inicio de sesión" */
-        }
-
-        #verify-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-top: 20px;
-            color: #fff;
-        }
-
-        #verify-section.show {
-            display: flex;
-        }
-
-        #verify-section p {
-            margin: 0;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        /* "segundo boton continuar" */
-        #verify-section .register {
-            margin-top: 5px;
-            /* Solo afecta a la sección de verificación */
-        }
-
-        /* Sección de Crear cuenta */
-        #create-account-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            margin-top: 20px;
-            color: #fff;
-        }
-
-        #create-account-section.show {
-            display: flex;
-        }
-
-        #create-account-section p {
-            font-size: 16px;
-        }
-
-        #create-account-section .input-field {
-            position: relative;
-            border-bottom: 2px solid #ccc;
-            margin: 15px 0;
-            width: 55%;
-            /* El input y el label se extienden completamente */
-        }
-
-        #create-account-section .input-field input {
-            width: 100%;
-            height: 40px;
-            color: #ffffff;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 16px;
-
-        }
-
-        #create-account-section button {
-            background: #ffffff;
-            color: #000;
-            font-weight: 600;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 3px;
-            font-size: 16x;
-            border: 2px solid transparent;
-            transition: 0.1s ease;
-        }
-
-        .input-field input[type="password"] {
-            width: 100%;
-            height: 40px;
-            color: #ffffff;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .edit-button {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: #ffffffb0;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        #edit-email:focus+label,
-        #edit-email:not(:placeholder-shown)+label {
-             font-size: 0.8rem;
-            top: 10px;
-            transform: translateY(-120%);
-        }
-    </style>
+    <!-- Los estilos han sido extraídos a este archivo -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="wrapper">
-        <form action="#">
-            <h2>INICIAR SECION</h2>
+        <form action="#" class="login-form" id="login-form">
+            <h2>INICIAR SESIÓN</h2>
             <div class="input-field">
                 <input type="text" id="email" required>
                 <label for="email">Correo electrónico</label>
@@ -334,42 +20,45 @@
             <div class="input-field">
                 <input type="password" id="login-password" required>
                 <label for="login-password">Contraseña</label>
+                <!-- Accesibilidad mejorada: Se cambió <span> por un <button> -->
+                <button type="button" class="toggle-password" onclick="togglePassword('login-password')" aria-label="Mostrar/ocultar contraseña">👁️</button>
             </div>
             <div class="forget">
                 <label for="remember">
                     <input type="checkbox" id="remember">
-                    <p> Acuérdate de mí</p>
+                    <span style="margin-left: 8px;">Acuérdate de mí</span>
                 </label>
-                <a href="#" onclick="showReset()">¿Olvidaste tu contraseña?</a>
-
+                <a href="#" id="forgot-password-link">¿Olvidaste tu contraseña?</a>
             </div>
-            <button type="submit">Iniciar secion </button>
+            <button type="submit">Iniciar sesión</button>
             <div class="register">
-                <a href="#" onclick="showCreateAccount()">Crear cuenta</a>
+                <a href="#" id="create-account-link">Crear cuenta</a>
             </div>
         </form>
+
         <!-- Sección de crear cuenta -->
-        <div id="create-account-section">
+        <div id="create-account-section" class="hidden">
             <h1>Crear cuenta</h1>
             <div class="input-field">
-                <!-- <input type="email" id="new-email" placeholder="Dirección de correo electrónico" required> seria para que en el label se muestre dire.cor.elctronico  -->
                 <input type="email" id="new-email" required>
                 <label for="new-email">Dirección de correo electrónico</label>
             </div>
-            <button onclick="continueToPasswordSection()">Continuar</button>
-
+            <button id="btn-continue-password">Continuar</button>
+            <div class="register">
+                <a href="#" class="back-to-login">Volver al inicio de sesión</a>
+            </div>
         </div>
 
         <!-- Sección de restablecer contraseña -->
-        <div class="reset-password" id="reset-section">
+        <div class="reset-password hidden" id="reset-section">
             <h1>Restablecer contraseña</h1>
             <p id="reset-text">
-                Haz clic en “Continuar” para restablecer tu contraseña para
+                Haz clic en "Continuar" para restablecer tu contraseña para
                 <strong id="user-email"></strong>
             </p>
-            <button onclick="handleContinue()">Continuar</button>
+            <button id="btn-handle-continue">Continuar</button>
             <div class="register">
-                <a href="#" onclick="showLogin()">Volver al inicio de seción</a>
+                <a href="#" class="back-to-login">Volver al inicio de sesión</a>
             </div>
         </div>
 
@@ -386,218 +75,42 @@
             </div>
             <button id="continue-button" type="button" disabled>Continuar</button>
             <div class="register">
-                <a href="#" onclick="resendEmail()">Reenviar correo electrónico</a>
+                <a href="#" id="resend-email">Reenviar correo electrónico</a>
+                <br><br>
+                <a href="#" class="back-to-login">Volver al inicio de sesión</a>
             </div>
         </div>
 
         <!-- Sección de ingresar contraseña -->
-        <div id="password-section" style="display: none;">
+        <div id="password-section" class="hidden">
             <h2>Ingresa tu contraseña</h2>
 
             <!-- Correo editable -->
             <div class="input-field">
                 <input type="text" id="edit-email" placeholder=" " value="" disabled>
                 <label for="edit-email">Dirección de correo electrónico</label>
-                <button type="button" class="edit-button" onclick="editEmail()">Editar</button>
-
+                <button type="button" class="edit-button" id="btn-edit-email">Editar</button>
             </div>
 
             <!-- Contraseña -->
             <div class="input-field">
                 <input type="password" id="create-password" required>
                 <label for="create-password">Contraseña</label>
-                <span class="toggle-password" onclick="togglePassword('create-password')">👁️</span>
+                <!-- Accesibilidad mejorada: Se cambió <span> por un <button> -->
+                <button type="button" class="toggle-password" onclick="togglePassword('create-password')" aria-label="Mostrar/ocultar contraseña">👁️</button>
             </div>
 
-            <button>¿Olvidaste la contraseña?</button>
-            <button>Continuar</button>
+            <button type="button">¿Olvidaste la contraseña?</button>
+            <button type="button" style="margin-top: 10px;" id="btn-finish-create-account">Continuar</button>
+            
+            <div class="register">
+                <a href="#" class="back-to-login">Volver al inicio de sesión</a>
+            </div>
         </div>
 
     </div>
-    <script>
-        // Elementos generales
-        const loginForm = document.querySelector('form');
-        const resetSection = document.getElementById('reset-section');
-        const verifySection = document.getElementById('verify-section');
-        const createAccountSection = document.getElementById('create-account-section');
-        const passwordSection = document.getElementById('password-section');
-
-        // Inputs del formulario de inicio de sesión
-        const emailInput = document.getElementById('email');
-        const loginPasswordInput = document.getElementById('login-password');
-        const rememberCheckbox = document.getElementById('remember');
-
-        // Inputs y elementos de recuperación / verificación
-        const userEmailSpan = document.getElementById('user-email');
-        const verifyEmailSpan = document.getElementById('verify-email');
-        const continueButton = document.getElementById('continue-button');
-
-        // Inputs del formulario de crear cuenta
-        const newEmailInput = document.getElementById('new-email');
-
-        // Inputs de la sección de contraseña (crear cuenta)
-        const editEmailInput = document.getElementById('edit-email');
-        const createPasswordInput = document.getElementById('create-password');
-
-        // Código de verificación
-        const codeInput = document.getElementById('code');
-
-        // Mostrar sección de "Crear cuenta"
-        function showCreateAccount() {
-            loginForm.style.display = "none";
-            resetSection.classList.remove("show");
-            resetSection.classList.add("hidden");
-            verifySection.classList.remove("show");
-            verifySection.classList.add("hidden");
-
-            createAccountSection.classList.remove("hidden");
-            createAccountSection.classList.add("show");
-            loginForm.reset();
-        }
-        // Función para continuar hacia la sección de contraseña
-        function continueToPasswordSection() {
-            const email = newEmailInput.value.trim();
-            if (!email || !validateEmail(email)) {
-                alert("Por favor, ingresa un correo electrónico válido.");
-                return;
-            }
-            document.getElementById('edit-email').value = email; // Rellenamos el correo en la sección de contraseña
-            createAccountSection.style.display = "none";
-            passwordSection.style.display = "block";
-        }
-
-
-        function editEmail() {
-            editEmailInput.disabled = false;
-        }
-
-        // Función para mostrar u ocultar la contraseña
-        function togglePassword(inputId) {
-            const passwordInput = document.getElementById(inputId);
-            const eyeIcon = passwordInput.nextElementSibling;
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                eyeIcon.textContent = "👁️";
-            } else {
-                passwordInput.type = "password";
-                eyeIcon.textContent = "🙈";
-            }
-        }
-
-        // Continuar en el proceso de crear cuenta (aquí puedes agregar más lógica)
-        function continueToCreateAccount() {
-            const newEmail = newEmailInput.value.trim();
-
-            if (!newEmail || !validateEmail(newEmail)) {
-                alert("Por favor, ingresa un correo electrónico válido.");
-                return;
-            }
-
-            alert("Cuenta creada con éxito para " + newEmail);
-            // Aquí podrías agregar más lógica como redirigir al usuario a otra página
-        }
-        // Función para mostrar la contraseña como "*****"
-        function displayPassword() {
-            const storedPassword = localStorage.getItem('rememberedPassword');
-            if (storedPassword) {
-                const asterisks = '*'.repeat(storedPassword.length); // Reemplaza la contraseña con asteriscos
-                passwordInput.value = asterisks; // Muestra asteriscos en el input de la contraseña
-            }
-        }
-
-
-        // Verifica si hay datos guardados y los muestra al cargar la página
-        document.addEventListener("DOMContentLoaded", function () {
-            const savedEmail = localStorage.getItem('rememberedEmail');
-            const savedPassword = localStorage.getItem('rememberedPassword');
-
-            if (savedEmail) {
-                emailInput.value = savedEmail;
-                rememberCheckbox.checked = true;
-            }
-
-            if (savedPassword) {
-                displayPassword(); // Muestra la contraseña como asteriscos
-            }
-        });
-
-        // Función para guardar el correo si "Acuérdate de mí" está marcado
-        function handleRememberMe() {
-            const email = emailInput.value.trim();
-            const password = loginPasswordInput.value.trim();
-
-            if (rememberCheckbox.checked && email && password) {
-                localStorage.setItem('rememberedEmail', email); // Guardar correo
-                localStorage.setItem('rememberedPassword', password); // Guardar contraseña
-            } else {
-                localStorage.removeItem('rememberedEmail'); // Eliminar correo si no está marcado
-                localStorage.removeItem('rememberedPassword'); // Eliminar contraseña si no está marcado
-            }
-        }
-
-        function showReset() {
-            const email = emailInput.value.trim();
-
-            if (!email || !validateEmail(email)) {
-                alert("Por favor, ingresa un correo electrónico válido.");
-                continueButton.disabled = true;
-                return;
-            }
-            userEmailSpan.textContent = email;
-            loginForm.style.display = "none";
-            resetSection.classList.remove("hidden");
-            resetSection.classList.add("show");
-            continueButton.disabled = false;
-        }
-
-        function validateEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
-
-
-        function showLogin() {
-            loginForm.style.display = "flex";
-            resetSection.classList.remove("show");
-            resetSection.classList.add("hidden");
-            verifySection.classList.remove("show");
-            verifySection.classList.add("hidden");
-            createAccountSection.classList.remove("show");
-            createAccountSection.classList.add("hidden");
-        }
-
-        function handleContinue() {
-            const email = emailInput.value || "[correo no ingresado]";
-            verifyEmailSpan.textContent = email;
-            resetSection.classList.remove("show");
-            resetSection.classList.add("hidden");
-            verifySection.classList.remove("hidden");
-            verifySection.classList.add("show");
-        }
-
-        function verifyCode() {
-            alert("Código verificado correctamente (o aquí manejar el código ingresado).");
-        }
-
-        function resendEmail() {
-            alert("Correo de verificación reenviado.");
-        }
-        emailInput.addEventListener("input", function () {
-            const email = emailInput.value.trim();
-            if (email && validateEmail(email)) {
-                continueButton.disabled = false;  // Habilitar el botón si el correo es válido
-            } else {
-                continueButton.disabled = true;  // Deshabilitar el botón si el correo es inválido
-            }
-        });
-        // Evento para mostrar restablecer contraseña
-        document.querySelector('.forget a').addEventListener('click', function (event) {
-            event.preventDefault();
-            showReset();
-        });
-        // Agregar un "listener" para que cuando cambie la casilla "Acuérdate de mí", guardemos la preferencia
-        rememberCheckbox.addEventListener('change', handleRememberMe);
-    </script>
+    <!-- La lógica de JS ha sido extraída a este archivo -->
+    <script src="script.js"></script>
 </body>
 
 </html>

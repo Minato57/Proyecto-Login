@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    height: 100%;
+    margin: 0;
+    padding: 0 10px;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100dvh;
+    height: 100%;
+    background: url('https://images.hdqwalls.com/download/shorekeeper-wuthering-waves-wf-2560x1440.jpg') no-repeat center center/cover;
+    z-index: -1;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 490px;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #ffffff80;
+    backdrop-filter: blur(8px);
+}
+
+form.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+h2, h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #f3f2f2;
+}
+
+.input-field {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    margin: 15px 0;
+}
+
+.input-field label {
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.15s ease;
+}
+
+.input-field input {
+    width: 100%;
+    height: 40px;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-right: 30px; /* Evita que el texto tape los botones */
+}
+
+.input-field input:focus~label,
+.input-field input:valid~label {
+    font-size: 0.8rem;
+    top: 10px;
+    transform: translateY(-120%);
+}
+
+.forget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0 35px 0;
+    color: #e6e6e6;
+}
+
+#remember {
+    accent-color: #0a5edd;
+}
+
+.forget label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.wrapper a {
+    color: #efefef;
+    text-decoration: underline;
+}
+
+button {
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+}
+
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.register {
+    text-align: center;
+    margin-top: 30px;
+    color: #fff;
+}
+
+/* Adaptación para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    h2, h1 { font-size: 2rem; }
+    .input-field input { font-size: 14px; }
+    button { font-size: 14px; padding: 10px 18px; }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper { padding: 20px; }
+    h2, h1 { font-size: 1.8rem; }
+    .input-field input { font-size: 14px; }
+    button { font-size: 14px; padding: 10px 18px; }
+}
+
+@media screen and (min-width: 1024px) {
+    .wrapper { width: 70%; }
+    h2, h1 { font-size: 2.5rem; }
+    .input-field input { font-size: 16px; }
+}
+
+/* Clases de utilidad */
+.hidden {
+    display: none !important;
+}
+
+/* Secciones secundarias */
+#reset-section, #verify-section, #create-account-section, #password-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+#reset-section p, #verify-section p, #create-account-section p {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+#reset-section .register, #verify-section .register {
+    margin-top: 5px;
+}
+
+#create-account-section .input-field, #password-section .input-field {
+    width: 100%;
+}
+
+#create-account-section button, #password-section button {
+    width: 100%;
+}
+
+.edit-button, .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #ffffffb0;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.toggle-password {
+    font-size: 18px;
+    color: white;
+}
+
+#edit-email:focus+label,
+#edit-email:not(:placeholder-shown)+label {
+     font-size: 0.8rem;
+    top: 10px;
+    transform: translateY(-120%);
+}
