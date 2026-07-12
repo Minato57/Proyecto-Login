@@ -194,11 +194,14 @@ button:disabled {
     font-size: 14px;
     cursor: pointer;
     padding: 0;
+    outline: none;
+    width: auto !important;
 }
 
 .toggle-password {
-    font-size: 18px;
+    font-size: 14px;
     color: white;
+    right: 5px;
 }
 
 #edit-email:focus+label,
